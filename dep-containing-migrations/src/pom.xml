@@ -58,12 +58,6 @@
             <version>8.0.13</version>
         </dependency>
 
-        <dependency>
-            <groupId>fi.multisilta</groupId>
-            <artifactId>dep-containing-migrations</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
         <!-- Developer tools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
