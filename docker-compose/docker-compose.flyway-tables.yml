@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  fw-service-1:
+    image: openjdk:8
+    networks:
+      - test
+    environment:
+      - SPRING_PROFILES_ACTIVE=postgres
+      - DB_HOST=postgres
+      - SPRING_FLYWAY_TABLE=fw_table_1
+      # Call baseline when migrating into a non-empty schema
+      - SPRING_FLYWAY_BASELINEONMIGRATE=true
+      - SPRING_FLYWAY_BASELINE_VERSION=0
+      - SPRING_FLYWAY_PLACEHOLDERS_SERVICE_PREFIX=srv1_
+    volumes:
+      - "../spring-boot-flyway/target/spring-boot-flyway-0.0.1-SNAPSHOT.jar:/service.jar"
+    command: java -jar /service.jar
+
+  fw-service-2:
+    image: openjdk:8
+    networks:
+      - test
+    environment:
+      - SPRING_PROFILES_ACTIVE=postgres
+      - DB_HOST=postgres
+      - SPRING_FLYWAY_TABLE=fw_table_2
+      # Call baseline when migrating into a non-empty schema
+      - SPRING_FLYWAY_BASELINEONMIGRATE=true
+      - SPRING_FLYWAY_BASELINE_VERSION=0
+      - SPRING_FLYWAY_PLACEHOLDERS_SERVICE_PREFIX=srv2_
+    volumes:
+      - "../spring-boot-flyway/target/spring-boot-flyway-0.0.1-SNAPSHOT.jar:/service.jar"
+    command: java -jar /service.jar
+
+  fw-service-3:
+    image: openjdk:8
+    networks:
+      - test
+    environment:
+      - SPRING_PROFILES_ACTIVE=postgres
+      - DB_HOST=postgres
+      - SPRING_FLYWAY_TABLE=fw_table_3
+      # Call baseline when migrating into a non-empty schema
+      - SPRING_FLYWAY_BASELINEONMIGRATE=true
+      - SPRING_FLYWAY_BASELINE_VERSION=0
+      - SPRING_FLYWAY_PLACEHOLDERS_SERVICE_PREFIX=srv3_
+    volumes:
+      - "../spring-boot-flyway/target/spring-boot-flyway-0.0.1-SNAPSHOT.jar:/service.jar"
+    command: java -jar /service.jar
+
+networks:
+  test:
+    external: true
+

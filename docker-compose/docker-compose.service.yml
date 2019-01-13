@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  microservice:
+    image: openjdk:8
+    networks:
+      - test
+    environment:
+      - SPRING_PROFILES_ACTIVE=postgres
+      - DB_HOST=postgres
+    volumes:
+      - "../spring-boot-flyway/target/spring-boot-flyway-0.0.1-SNAPSHOT.jar:/service.jar"
+    command: java -jar /service.jar
+
+networks:
+  test:
+    external: true
+
